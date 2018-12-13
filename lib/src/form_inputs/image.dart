@@ -55,8 +55,10 @@ class _ImageInputState extends State<ImageInput> {
   Widget build(BuildContext context) {
     return Column(
       children: <Widget>[
-        Container(
-          height: 200.0,
+        ConstrainedBox(
+          constraints: BoxConstraints(
+            maxHeight: 200
+          ),
           child: _image == null
               ? new Text('No image selected.')
               : new Image.file(_image),
