@@ -33,9 +33,19 @@ class _HomePageState extends State<HomePage> {
     return ListView.builder(
       itemBuilder: (BuildContext context, int index) {
         final ItemModel item = ItemModel.fromMap(snapshot.data[index]);
-        return ListTile(
-          leading: Image.file(File(item.image),height: 80,),
-          title: Text(item.title),
+        return Column(
+          children: <Widget>[
+            ListTile(
+              contentPadding: EdgeInsets.all(10.0),
+              leading: CircleAvatar(
+              backgroundImage: FileImage(File(item.image)),
+
+              ),
+              title: Text(item.title),
+              onTap: (){},
+            ),
+            Divider()
+          ],
         );
       },
       itemCount: snapshot.data.length,
