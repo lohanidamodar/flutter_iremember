@@ -6,8 +6,16 @@ import 'package:i_remember/src/models/item_model.dart';
 import '../blocs/items_bloc.dart';
 import '../resources/repository.dart';
 
-class AddPage extends StatelessWidget {
+class AddPage extends StatefulWidget {
+  @override
+  _AddPageState createState() {
+    return new _AddPageState();
+  }
+}
+
+class _AddPageState extends State<AddPage> {
   File _image;
+  String _title = '';
 
   _imagePicked(File image) {
     _image = image;
@@ -18,7 +26,7 @@ class AddPage extends StatelessWidget {
       if(added) Navigator.pop(context);
     });
     bloc.addItem(ItemModel(
-      title: "Hello World",
+      title: _title,
       image: _image.path
     ));
   }
@@ -33,7 +41,9 @@ class AddPage extends StatelessWidget {
         body: SingleChildScrollView(
           child: Column(
             children: <Widget>[
-              TextField(),
+              TextField(
+                onChanged: _titleChanged,
+              ),
               ImageInput(onImagePicked: _imagePicked,),
               RaisedButton(child: Text('Save'),onPressed: () => _save(context),)
             ],
@@ -41,4 +51,10 @@ class AddPage extends StatelessWidget {
         ),
       );
     }
+
+  void _titleChanged(String value) {
+    setState(() {
+          _title = value;
+        });
+  }
 }
