@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:i_remember/src/models/item_model.dart';
 import 'package:i_remember/src/pages/add.dart';
+import 'package:i_remember/src/pages/details.dart';
 import '../blocs/items_bloc.dart';
 
 class HomePage extends StatefulWidget {
@@ -29,6 +30,16 @@ class _HomePageState extends State<HomePage> {
     super.dispose();
   }
   
+  _openDetailsPage(BuildContext context, ItemModel item) {
+    Navigator.push(context, 
+      MaterialPageRoute(
+        builder: (context) {
+          return DetailsPage(item: item);
+        }
+      )
+    );
+  }
+
   Widget _buildList(AsyncSnapshot<List> snapshot) {
     return ListView.builder(
       itemBuilder: (BuildContext context, int index) {
@@ -42,7 +53,7 @@ class _HomePageState extends State<HomePage> {
 
               ),
               title: Text(item.title),
-              onTap: (){},
+              onTap: () => _openDetailsPage(context, item),
             ),
             Divider()
           ],
