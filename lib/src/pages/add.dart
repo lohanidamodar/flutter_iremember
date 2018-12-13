@@ -1,7 +1,19 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:i_remember/src/form_inputs/image.dart';
 
 class AddPage extends StatelessWidget {
+  File _image;
+
+  _imagePicked(File image) {
+    _image = image;
+  }
+
+  _save() {
+
+  }
+
   @override
     Widget build(BuildContext context) {
       return Scaffold(
@@ -13,7 +25,8 @@ class AddPage extends StatelessWidget {
           child: Column(
             children: <Widget>[
               TextField(),
-              ImageInput()
+              ImageInput(onImagePicked: _imagePicked,),
+              RaisedButton(child: Text('Save'),onPressed: _save,)
             ],
           ),
         ),
