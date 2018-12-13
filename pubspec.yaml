@@ -22,6 +22,7 @@ dependencies:
   image_picker: ^0.4.10
   sqflite: ^0.13.0
   path_provider:
+  rxdart:
 
 
 dev_dependencies:

@@ -4,7 +4,6 @@ import 'dart:io';
 import 'package:path/path.dart';
 import 'dart:async';
 import '../models/item_model.dart';
-import 'repository.dart';
 import 'constants.dart';
 
 class DbProvider{
@@ -32,14 +31,7 @@ class DbProvider{
         version: 1,
         onCreate: (Database newDb, int version){
           newDb.execute(
-           """
-            CREATE TABLE $tableName
-            {
-              $columnId INTEGER PRIMARY KEY,
-              $columnTitle TEXT,
-              $columnImage TEXT,
-            )
-           """
+           "CREATE TABLE $tableName($columnId INTEGER PRIMARY KEY,$columnTitle TEXT,$columnImage TEXT)"
           );
         },
     );
