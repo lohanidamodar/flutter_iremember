@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:i_remember/src/form_inputs/image.dart';
 import 'package:i_remember/src/models/item_model.dart';
 import '../blocs/items_bloc.dart';
-import '../resources/repository.dart';
 
 class AddPage extends StatefulWidget {
   @override
