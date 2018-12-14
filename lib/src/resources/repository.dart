@@ -20,4 +20,8 @@ class Repository {
   Future<int> addItem(ItemModel item) async {
     return await DbProvider().addItem(item);
   }
+
+  Future<int> deleteItem(int id) async {
+    return await DbProvider().deleteItem(id);
+  }
 }

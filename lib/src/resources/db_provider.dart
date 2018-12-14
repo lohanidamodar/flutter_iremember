@@ -70,4 +70,10 @@ class DbProvider{
     var dbClient = await db;
     return dbClient.insert(tableName, item.toMap());
   }
+
+  Future<int> deleteItem(int id) async {
+    var dbClient = await db;
+    return dbClient.delete(tableName,where: '$columnId=?',whereArgs: [id]);
+  }
+
 }

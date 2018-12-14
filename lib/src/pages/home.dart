@@ -58,11 +58,28 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
+  _delete(int id) {
+    showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        content: Text('Are you sure you want to delete?'),
+        actions: <Widget>[
+          IconButton(icon: Icon(Icons.check), onPressed: (){
+            Navigator.pop(context);
+            bloc.deleteItem(id);
+          },),
+          IconButton(icon: Icon(Icons.close), onPressed: () => Navigator.pop(context),)
+        ],
+      )
+    );
+  }
+
   Widget _buildList(AsyncSnapshot<List> snapshot) {
     return ListView.builder(
       itemBuilder: (BuildContext context, int index) {
         final ItemModel item = ItemModel.fromMap(snapshot.data[index]);
         return Column(
+          key: Key(item.id.toString()),
           children: <Widget>[
             ListTile(
               contentPadding: EdgeInsets.all(10.0),
@@ -71,6 +88,7 @@ class _HomePageState extends State<HomePage> {
 
               ),
               title: Text(item.title),
+              trailing: IconButton(icon: Icon(Icons.delete_forever),onPressed: ()=>_delete(item.id)),
               onTap: () => _openDetailsPage(context, item),
             ),
             Divider()

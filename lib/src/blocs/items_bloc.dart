@@ -8,13 +8,14 @@ class ItemsBloc{
   final _item = PublishSubject<ItemModel>();
   final _itemAdded = PublishSubject<bool>();
   final _searchInput = PublishSubject<String>();
+  final _deleteId = PublishSubject<int>();
 
  //getter the stream
   Observable<List> get items => _items.stream;
   Observable<bool> get itemAdded => _itemAdded.stream;
 
   Function(ItemModel) get addItem => _item.sink.add;
-
+  Function(int) get deleteItem => _deleteId.sink.add;
   Function(String) get search => _searchInput.sink.add;
 
 
@@ -32,6 +33,12 @@ class ItemsBloc{
      } else {
       _itemAdded.sink.add(false);
      }
+    });
+
+    _deleteId.stream.listen((int id) async {
+      if(await _repository.deleteItem(id) > 0) {
+        fetchItems();
+      }
     });
 
     _searchInput.stream.listen((String term) async {
