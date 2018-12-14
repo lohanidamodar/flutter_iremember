@@ -99,6 +99,7 @@ class _HomePageState extends State<HomePage> {
           ),
         ),
         floatingActionButton: FloatingActionButton(
+          tooltip: 'Remember new item',
           onPressed: (){
             Navigator.push(context, 
               MaterialPageRoute(builder: (context) {
@@ -106,7 +107,7 @@ class _HomePageState extends State<HomePage> {
               })
             );
           },
-          child: Icon(Icons.add_a_photo),
+          child: Icon(Icons.library_add),
         ),
       );
     }
