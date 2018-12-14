@@ -37,20 +37,51 @@ class _AddPageState extends State<AddPage> {
         appBar: AppBar(
           title: Text('Remember my..'),
           elevation: 0,
+          actions: <Widget>[
+            IconButton(
+              icon: Icon(Icons.check),
+              onPressed: () => _save(context),
+            )
+          ],
         ),
         body: SingleChildScrollView(
           child: Column(
             children: <Widget>[
-              TextField(
-                onChanged: _titleChanged,
+              Container(
+                margin: EdgeInsets.all(10.0),
+                decoration: BoxDecoration(
+                  color: Colors.blueGrey,
+                  borderRadius: BorderRadius.all(Radius.circular(5.0)),
+                ),
+                child: _buildTitleField(),
               ),
               ImageInput(onImagePicked: _imagePicked,),
-              RaisedButton(child: Text('Save'),onPressed: () => _save(context),)
             ],
           ),
         ),
       );
     }
+
+  TextField _buildTitleField() {
+    return TextField(
+                onChanged: _titleChanged,
+                autofocus: true,
+                textCapitalization: TextCapitalization.sentences,
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 24.0
+                ),
+                decoration: InputDecoration(
+                  contentPadding: EdgeInsets.all(10.0),
+                  hintText: 'title',
+                  border: InputBorder.none,
+                  hintStyle: TextStyle(
+                    color: Colors.white70,
+                    fontSize: 24.0
+                  )
+                ),
+              );
+  }
 
   void _titleChanged(String value) {
     setState(() {
