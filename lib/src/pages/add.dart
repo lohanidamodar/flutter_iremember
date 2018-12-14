@@ -35,7 +35,6 @@ class _AddPageState extends State<AddPage> {
       return Scaffold(
         appBar: AppBar(
           title: Text('Remember my..'),
-          elevation: 0,
           actions: <Widget>[
             IconButton(
               icon: Icon(Icons.check),

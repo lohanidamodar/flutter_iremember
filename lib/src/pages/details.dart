@@ -13,7 +13,6 @@ class DetailsPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text(item.title),
-        elevation: 0,
       ),
       body: Image.file(File(item.image)),
     );

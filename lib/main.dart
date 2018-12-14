@@ -10,7 +10,8 @@ class App extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         home: HomePage(title: 'iRemember'),
         theme: ThemeData(
-          primaryColor: Colors.white
+          accentColor: Colors.pink,
+          primarySwatch: Colors.yellow,
         ),
         title: 'iRemember',
       );

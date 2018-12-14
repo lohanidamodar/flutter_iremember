@@ -119,11 +119,10 @@ class _HomePageState extends State<HomePage> {
           decoration: InputDecoration(
             border: InputBorder.none,
             hintText: 'find my...',
-            icon: Icon(Icons.search, color: Theme.of(context).accentColor,),
+            icon: Icon(Icons.search, color: Colors.black,),
 
           ),
         ),
-        elevation: 0,
 
       );
   }
