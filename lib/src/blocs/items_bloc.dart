@@ -46,6 +46,7 @@ class ItemsBloc{
   }
 
   dispose(){
+    _searchInput.close();
     _items.close();
     _item.close();
     _itemAdded.close();

@@ -20,10 +20,18 @@ class _AddPageState extends State<AddPage> {
     _image = image;
   }
 
-  _save(BuildContext context) async {
+  _save(BuildContext context, BuildContext childContext) async {
     bloc.itemAdded.listen((bool added) {
       if(added) Navigator.pop(context);
     });
+    if(_title.isEmpty || _image == null) {
+      Scaffold.of(childContext).showSnackBar(
+        SnackBar(
+          content: Text("Title and image both are required"),
+        )
+      );
+      return;
+    }
     bloc.addItem(ItemModel(
       title: _title,
       image: _image.path
@@ -36,9 +44,11 @@ class _AddPageState extends State<AddPage> {
         appBar: AppBar(
           title: Text('Remember my..'),
           actions: <Widget>[
-            IconButton(
-              icon: Icon(Icons.check),
-              onPressed: () => _save(context),
+            Builder(
+              builder: (childContext) => IconButton(
+                icon: Icon(Icons.check),
+                onPressed: () => _save(context, childContext),
+              ),
             )
           ],
         ),
