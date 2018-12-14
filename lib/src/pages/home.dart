@@ -17,6 +17,24 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  final TextEditingController _filter = new TextEditingController();
+  String _searchText = "";
+
+  _HomePageState() {
+    _filter.addListener(() {
+      if (_filter.text.isEmpty) {
+        setState(() {
+          _searchText = "";
+          bloc.fetchItems();
+        });
+      } else {
+        setState(() {
+          _searchText = _filter.text;
+          bloc.search(_filter.text);
+        });
+      }
+    });
+  }
 
   @override
   void initState() {
@@ -96,6 +114,7 @@ class _HomePageState extends State<HomePage> {
   AppBar _buildAppBar(BuildContext context) {
     return AppBar(
         title: TextField(
+          controller: _filter,
           decoration: InputDecoration(
             border: InputBorder.none,
             hintText: 'find my...',

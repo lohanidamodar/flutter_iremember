@@ -7,6 +7,7 @@ class ItemsBloc{
   final _items = PublishSubject<List>();
   final _item = PublishSubject<ItemModel>();
   final _itemAdded = PublishSubject<bool>();
+  final _searchInput = PublishSubject<String>();
 
  //getter the stream
   Observable<List> get items => _items.stream;
@@ -14,6 +15,7 @@ class ItemsBloc{
 
   Function(ItemModel) get addItem => _item.sink.add;
 
+  Function(String) get search => _searchInput.sink.add;
 
 
   fetchItems() async{
@@ -31,6 +33,16 @@ class ItemsBloc{
       _itemAdded.sink.add(false);
      }
     });
+
+    _searchInput.stream.listen((String term) async {
+      _search(term);
+    });
+  }
+
+  _search(String term) async {
+    final items = await _repository.searchItems(term);
+    print(items);
+    _items.sink.add(items);
   }
 
   dispose(){

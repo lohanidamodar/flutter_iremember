@@ -13,6 +13,10 @@ class Repository {
     return await DbProvider().fetchItems();
   }
 
+  Future<List> searchItems(String term) async {
+    return await DbProvider().searchItems(term);
+  }
+
   Future<int> addItem(ItemModel item) async {
     return await DbProvider().addItem(item);
   }

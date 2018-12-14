@@ -44,6 +44,12 @@ class DbProvider{
     return res;
   }
 
+  Future<List> searchItems(String term) async {
+    var dbClient = await db;
+    var res = await dbClient.rawQuery("SELECT * FROM $tableName WHERE $columnTitle LIKE '%$term%'");
+    return res;
+  }
+
   Future<ItemModel> fetchItem(int id) async{
     var dbClient = await db;
     final maps = await dbClient.query(
